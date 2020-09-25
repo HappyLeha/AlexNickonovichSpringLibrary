@@ -1,53 +1,66 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UserCreateDto;
 import com.example.demo.dto.UserDto;
+import com.example.demo.dto.UserListDto;
+import com.example.demo.entity.Rent;
+import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
+import com.example.demo.exceptions.PasswordNotEqualableException;
 import com.example.demo.exceptions.ResourceAlreadyCreateException;
 import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.exceptions.ResourceRestrictException;
 import com.example.demo.service.UserService;
 import com.example.demo.util.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
-
 @RestController
-@RequestMapping("users")
-class UserController {
+@RequestMapping("user")
+public class UserController {
     private final UserService userService;
+
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(@RequestBody UserService userService) {
         this.userService = userService;
     }
-    @GetMapping(value = {"/all"})
-    public List<UserDto> userList() {
-        return Mapper.mapAll(userService.getAllUser(), UserDto.class);
-    }
-    @GetMapping(value = {"/{login}"})
-    public UserDto findByLogin(@PathVariable("login") String login) throws
-            ResourceNotFoundException {
-        return Mapper.map(userService.getByLogin(login), UserDto.class);
-    }
-    @PutMapping(value = "/edit/{login}")
-    @ResponseStatus(HttpStatus.OK)
-    public void editUser(@PathVariable("login") String login,@RequestBody
-            UserDto userdto) throws ResourceNotFoundException,ResourceAlreadyCreateException {
-        userService.getByLogin(login);
-        userService.editUser(Mapper.map(userdto, User.class),login);
-    }
-    @PostMapping("/add")
+    @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(  @RequestBody UserDto userDto) throws ResourceAlreadyCreateException {
-        userService.addNewUser(Mapper.map(userDto, User.class));
+    public void saveUser(@RequestBody   UserCreateDto userCreateDto) throws ResourceAlreadyCreateException,
+            PasswordNotEqualableException {
+        System.out.println(userCreateDto.getPassword()+" "+userCreateDto.getRepeatPassword());
+        if (!userCreateDto.getPassword().equals(userCreateDto.getRepeatPassword())) throw new PasswordNotEqualableException();
+        userService.addNewUser(new User(userCreateDto.getId(),userCreateDto.getLogin(),userCreateDto.getPassword(),
+                userCreateDto.getFirstName(),userCreateDto.getLastName(),userCreateDto.getYear(),userCreateDto.getEmail(),
+                userCreateDto.getPhone(),userCreateDto.getPhoto(),null, Role.getRoleById(userCreateDto.getRole())));
     }
-    @DeleteMapping(value = {"/delete/{login}"})
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable("login") String login) throws
+    @GetMapping(value = {"/{id}"})
+    public UserDto findById(@PathVariable("id") int id) throws
             ResourceNotFoundException {
-        userService.deleteUser(userService.getByLogin(login));
+        User user=userService.getById(id);
+        return new UserDto(user.getId(),user.getLogin(),user.getPassword(),user.getFirstName(),
+                user.getLastName(),user.getYear(),user.getEmail(),user.getPhone(),
+                user.getPhoto(),user.getRole().getId());
+
+    }
+    @GetMapping(value = {"/all"})
+    public List<UserListDto> userList() {
+        return Mapper.mapAll(userService.getAllUser(), UserListDto.class);
+    }
+    @DeleteMapping(value = {"/delete/{id}"})
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteUser(@PathVariable("id") int id) throws
+            ResourceRestrictException {
+        userService.deleteUser(id);
+    }
+    @PutMapping(value = "/edit")
+    @ResponseStatus(HttpStatus.OK)
+    public void editUser(@RequestBody UserCreateDto userCreateDto) throws ResourceNotFoundException,
+            ResourceAlreadyCreateException,PasswordNotEqualableException {
+        if (!userCreateDto.getPassword().equals(userCreateDto.getRepeatPassword())) throw new PasswordNotEqualableException();
+        userService.editUser(Mapper.map(userCreateDto, User.class));
     }
 }

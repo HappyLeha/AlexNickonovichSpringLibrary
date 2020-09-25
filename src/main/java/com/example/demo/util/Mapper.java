@@ -1,11 +1,8 @@
 package com.example.demo.util;
 
-import com.example.demo.dto.TripDto;
-import com.example.demo.entity.Trip;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,16 +29,5 @@ public class Mapper {
                 .map(e -> map(e, targetClass))
                 .collect(Collectors.toList());
     }
-    public static TripDto convertTrip (Trip trip) {
-        return new TripDto(trip.getId(),trip.getDateTimeFrom(),trip.getDateTimeTo(),trip.getFrom(),
-                trip.getTo(),trip.getCountOfPlaces(),trip.getCurrentCountOfPlaces(),trip.getTransport(),
-                trip.getCost(),trip.getDriver().getLogin());
-    }
-    public static List<TripDto> convertTripList (List<Trip> list) {
-        List<TripDto> listDto=new ArrayList<>();
-        for (Trip x:list) {
-            listDto.add(convertTrip(x));
-        }
-        return listDto;
-    }
+
 }

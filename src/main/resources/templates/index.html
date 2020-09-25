@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+	<title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"   th:href="@{/css/util.css}">
+	<link rel="stylesheet" type="text/css"   th:href="@{/css/main.css}">
+
+	<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter" >
+		<div class="container-login100" id="background">
+			<div class="wrap-login100">
+
+				<form class="login100-form validate-form p-l-55 p-r-55 p-t-178" th:action="@{/index}" method="post">
+					<span class="login100-form-title">
+						Авторизация
+					</span>
+                    <div class="m-b-32">
+					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
+						<input class="input100" type="text" name="username" placeholder="Логин" required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Please enter password">
+						<input class="input100" type="password" name="password" placeholder="Пароль" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="error-message" th:if="${param.error}">
+						Неправильный логин или пароль
+					</div>
+					</div>
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Войти
+						</button>
+					</div>
+
+					<div class="flex-col-c p-t-170 p-b-40">
+						<span class="txt1 p-b-9">
+							Ещё нет аккаунта?
+						</span>
+
+						<a th:href="@{/registration}" class="txt3">
+							Регистрация
+						</a>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<!--===============================================================================================-->
+
+
+</body>
+</html>

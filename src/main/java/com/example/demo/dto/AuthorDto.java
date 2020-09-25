@@ -1,23 +1,19 @@
 package com.example.demo.dto;
 
+import com.example.demo.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
+import javax.persistence.Column;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class AuthorDto {
     private Integer id;
-    private String login;
-    private String password;
     private String firstName;
     private String lastName;
     private Integer year;
-    private String email;
-    private String phone;
-    private String photo;
-    private Integer role;
+    private Gender gender;
+    private String note;
 }

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8s" />
+<title>booklist</title>
+<link th:href="@{css/booklist.css}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery-1-4-2.min.js"></script> 
+</head>
+<body id="home">
+<div id="templatemo_header_wrapper">
+	<a href="index.html"><div id="site_title"></div></a>
+     <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            
+            <li><a href="#">Профиль</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+      
+    </div> 
+    <div class="cleaner"></div>
+</div>
+<div id="header">Список книг</div>	
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Наименование</th>
+            <th>Дата издания</th>
+            <th>Издательство</th>
+            <th>Имя</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Gitsome</td>
+            <td>Some one</td>
+            <td>Take mose</td>
+            <td>Likbes</td>
+            <td><button class="table-button">
+                Кнопка
+            </button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Linkage</td>
+            <td>Fordor</td>
+            <td>Miad ron me</td>
+            <td>Diablo core</td>
+            <td><button class="table-button">
+                Кнопка
+            </button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Hicura</td>
+            <td>Warecom</td>
+            <td>Xamicon</td>
+            <td>Yamama</td>
+            <td><button class="table-button">
+                Кнопка
+            </button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>Lavistaro</td>
+            <td>Micanorta</td>
+            <td>Ebloconte ma</td>
+            <td>Quad ri port</td>
+            <td><button class="table-button">
+                Кнопка
+            </button></td>
+        </tr>
+    </tbody>
+</table>
+<div class="buttons">
+<ul>
+            
+    <li><button id="button-add">Добавить</button></li>
+    <li><button id="button-list">Список читателей</button></li>
+    <li><button id="button-delete">Удалить</button></li>
+</ul>
+</div>
+</body>
+</html>

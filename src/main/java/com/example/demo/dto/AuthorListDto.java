@@ -1,23 +1,16 @@
 package com.example.demo.dto;
 
+import com.example.demo.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
+public class AuthorListDto {
     private Integer id;
-    private String login;
-    private String password;
     private String firstName;
     private String lastName;
     private Integer year;
-    private String email;
-    private String phone;
-    private String photo;
-    private Integer role;
 }
