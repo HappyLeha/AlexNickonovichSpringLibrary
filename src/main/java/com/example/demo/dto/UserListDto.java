@@ -7,9 +7,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserListDto {
-    private Integer id;
+public class UserListDto implements Comparable<UserListDto> {
+
+    private Long id;
     private String login;
-    private String firstName;
-    private String lastName;
+    private Long bookId;
+    private String book;
+
+    public int compareTo(UserListDto userListDto) {
+        return this.getLogin().compareTo(userListDto.getLogin());
+    }
+
 }

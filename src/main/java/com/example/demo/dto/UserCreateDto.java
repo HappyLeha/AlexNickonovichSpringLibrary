@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateDto {
-    private Integer id;
+
     private String login;
     private String password;
     private String repeatPassword;
@@ -18,5 +18,5 @@ public class UserCreateDto {
     private String email;
     private String phone;
     private String photo;
-    private Integer role;
+
 }

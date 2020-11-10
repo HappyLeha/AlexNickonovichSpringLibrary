@@ -10,11 +10,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class PasswordNotEqualable {
+
     @ResponseBody
     @ExceptionHandler(PasswordNotEqualableException.class)
-
     @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
-    String recourceNotFoundHandler (ResourceNotFoundException ex) {
+    String passwordNotEqualableHandler (PasswordNotEqualableException ex) {
         return ex.getMessage();
     }
+
 }

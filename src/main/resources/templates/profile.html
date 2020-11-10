@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/menu.css}">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/js/profile_Reader.js}" th:if="${#request.isUserInRole('ROLE_READER')}" ></script>
+    <script th:src="@{/js/profile_Admin.js}" th:if="${#request.isUserInRole('ROLE_ADMIN')}"></script>
+</head>
+<body id="home">
+<div id="templatemo_header_wrapper">
+    <a th:href="@{/booklist}"><div id="site_title"></div></a>
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a th:href="@{/profile}">Профиль</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+    </div>
+    <div class="cleaner"></div>
+</div>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form id="form-put" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
+					<span class="login100-form-title">
+						Профиль
+					</span>
+                <img id="image" class="image" th:src="@{/images/avatar.png}" />
+                <input id="input" class="input" type="file" accept="image/jpeg,image/png,image/gif">
+                <div id="div-checkbox" class="wrap-input100 validate-input m-b-16">
+                    <input id="checkbox" type="checkbox"\>
+                    <span>Картинка по умолчанию</span>
+                </div>
+                <h3 class="m-b-8">Логин</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" type="text" id="login" placeholder="Логин*" pattern="[a-zA-Zа-яА-Я0-9_]+" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Пароль</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" type="password" id="password" placeholder="Новый пароль" pattern="[a-zA-Zа-яА-Я0-9_]+">
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Повторите пароль</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" type="password" id="password-repeat" placeholder="Повторите пароль" pattern="[a-zA-Zа-яА-Я0-9_]+">
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8" th:if="${#request.isUserInRole('ROLE_READER')}">Имя</h3>
+                <div class="wrap-input100 validate-input m-b-16" th:if="${#request.isUserInRole('ROLE_READER')}">
+                    <input class="input100" type="text" id="firstname" placeholder="Имя*" pattern="[a-zA-Zа-яА-Я]+" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8" th:if="${#request.isUserInRole('ROLE_READER')}">Фамилия</h3>
+                <div class="wrap-input100 validate-input m-b-16" th:if="${#request.isUserInRole('ROLE_READER')}">
+                    <input class="input100" type="text" id="lastname" placeholder="Фамилия*" pattern="[a-zA-Zа-яА-Я]+" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8" th:if="${#request.isUserInRole('ROLE_READER')}">Год</h3>
+                <div class="wrap-input100 validate-input m-b-16" th:if="${#request.isUserInRole('ROLE_READER')}">
+                    <input class="input100" type="number" id="year" placeholder="Год рождения" min="1890" max="2020">
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Email</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" type="email" id="email" placeholder="Email*" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Телефон</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" type="text" id="phone" placeholder="Телефон [+375171112233]" pattern="\+\d{12}">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="error-message m-b-32" id="error">
+                </div>
+                <div class="container-login100-form-btn m-b-16">
+                    <button class="login100-form-btn" >
+                        Изменить
+                    </button>
+                </div>
+            </form>
+            <form class="p-l-55 p-r-55 login100-form">
+                <div class="container-login100-form-btn m-b-16">
+                    <button id="button-yellow" class="login100-form-btn">
+                        Сбросить изменения
+                    </button>
+                </div>
+            </form>
+            <form id="form-delete" class="p-l-55 p-r-55 login100-form" th:if="${#request.isUserInRole('ROLE_READER')}">
+                <div class="container-login100-form-btn m-b-16">
+                    <button id="button-red" class="login100-form-btn">
+                        Удалить
+                    </button>
+                </div>
+            </form>
+            <form class="p-l-55 p-r-55 login100-form" th:action="@{/booklist}">
+                <div class="container-login100-form-btn m-b-32">
+                    <button id="button-blue" class="login100-form-btn">
+                        На главную
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>BookPage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/menu.css}">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bookPage_Reader.js}" th:if="${#request.isUserInRole('ROLE_READER')}"></script>
+    <script type="text/javascript" th:src="@{/js/bookPage_Admin.js}" th:if="${#request.isUserInRole('ROLE_ADMIN')}"></script>
+</head>
+<body id="home">
+<div id="templatemo_header_wrapper">
+    <a th:href="@{/booklist}"><div id="site_title"></div></a>
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a th:href="@{/profile}">Профиль</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+    </div>
+    <div class="cleaner"></div>
+</div>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form id="form-put" class="login100-form validate-form p-l-55 p-r-55 p-t-178" th:action="@{/booklist}">
+					<span class="login100-form-title">
+						Книга
+					</span>
+                <h3 class="m-b-8">Название</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" placeholder="Название*" type="text" id="title" pattern="[a-zA-Zа-яА-Я0-9_]+" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Дата издания</h3>
+                <div class="wrap-input100 validate-input m-b-16 ">
+                    <input class="input100" placeholder="Дата издания" type="date" id="date" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Количество экземпляров</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" placeholder="Количество экземпляров*" type="number" id="count" min="1" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Издательство</h3>
+                <div class="wrap-input100 validate-input m-b-16 ">
+                    <input class="input100" placeholder="Издательство" type="text" pattern="[a-zA-Zа-яА-Я0-9_]+" id="publishing">
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Авторы</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <input class="input100" placeholder="Авторы" type="text" pattern="[a-zA-Zа-яА-Я0-9_]+" id="authors">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="error-message m-b-32" id="error">
+                </div>
+                <div class="container-login100-form-btn m-b-16" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                    <button class="login100-form-btn">
+                        Изменить
+                    </button>
+                </div>
+            </form>
+            <form class="p-l-55 p-r-55 login100-form" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                <div class="container-login100-form-btn m-b-16">
+                    <button id="button-yellow" class="login100-form-btn">
+                        Сбросить изменения
+                    </button>
+                </div>
+            </form>
+            <form id="form-delete" class="p-l-55 p-r-55 login100-form" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                <div class="container-login100-form-btn m-b-16">
+                    <button id="button-red" class="login100-form-btn">
+                        Удалить
+                    </button>
+                </div>
+            </form>
+            <form class="p-l-55 p-r-55 login100-form" th:action="@{/booklist}">
+                <div class="container-login100-form-btn m-b-32">
+                    <button id="button-blue" class="login100-form-btn">
+                        На главную
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

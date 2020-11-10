@@ -1,10 +1,9 @@
 package com.example.demo.entity;
 
-//import com.example.demo.enums.Country;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.ToString;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -15,30 +14,29 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Book {
-   @Id
+
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer id;
+    private Long id;
+
     @Column(name="title")
     private String title;
-    @Column(name="year")
-    private Integer year;
+
     @Column(name="date")
     private LocalDate date;
+
     @Column(name="count")
     private Integer count;
-    @ManyToMany
-    @JoinTable(
-            name = "author_book",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
-    )
-    private List<Author> authors;
+
+    @Column(name="authors")
+    private String authors;
+
+    @Column(name="publishing")
+    private String publishing;
+
     @OneToMany(mappedBy="book")
+    @ToString.Exclude
     private List<Rent> rents;
-    @ManyToOne
-    @JoinColumn(name="publishing")
-    private Publishing publishing;
-    @OneToMany(mappedBy="book")
-    private List<Cover> covers;
+
 }

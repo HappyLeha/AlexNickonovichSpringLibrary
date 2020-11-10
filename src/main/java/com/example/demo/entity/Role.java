@@ -3,8 +3,8 @@ package com.example.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,23 +14,21 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Role implements GrantedAuthority {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer id;
+    private Long id;
+
     @Column(name="name")
     private String name;
+
     @OneToMany(mappedBy="role")
+    @ToString.Exclude
     private List<User> users;
+
     @Override
     public String getAuthority() {
         return getName();
     }
-    public static Role getRoleById(Integer id) {
-        switch (id) {
-            case 1: return new Role(1,"admin",null);
-            case 2: return new Role(2,"reader",null);
-            default: return null;
-        }
-    }
+
 }

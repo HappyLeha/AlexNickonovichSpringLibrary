@@ -3,7 +3,6 @@ package com.example.demo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -13,18 +12,24 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Rent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private Integer id;
+    private Long id;
+
     @OneToOne
     @JoinColumn(name = "user")
     private User user;
+
     @ManyToOne
     @JoinColumn(name="book")
     private Book book;
+
     @Column(name="startdate")
     private LocalDate startDate;
+
     @Column(name="enddate")
     private LocalDate endDate;
+
 }

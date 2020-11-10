@@ -1,0 +1,270 @@
+table button {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    width: 80%;
+    height: 24px;
+    border-radius: 12px;
+    font-family: Ubuntu-Bold;
+    font-size: 10px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    outline: none !important;
+    border: none;
+    background-color: #57b846;
+}
+table {
+    width: 100%;
+    margin-bottom: 18px;
+    padding: 0;
+    font-size: 13px;
+    border: 2px solid black;
+    border-spacing: 0;
+    border-collapse: separate;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #666666;
+    font-family: Arial;
+    background-color: #f2f2f2;
+}
+table th, table td {
+    padding: 10px 10px 10px 10px;
+    line-height: 18px;
+    text-align: center;
+}
+table th {
+    padding-top: 9px;
+    font-weight: bold;
+    vertical-align: middle;
+    color: black;
+}
+table td {
+    vertical-align: top;
+    border-top: 1px solid black;
+}
+table th+th,table td+td,table th+td {
+    border-left: 1px solid black;
+}
+table thead tr:first-child th:first-child,
+table tbody tr:first-child td:first-child {
+    -webkit-border-radius: 5px 0 0 0;
+    -moz-border-radius: 5px 0 0 0;
+    border-radius: 5px 0 0 0;
+}
+table thead tr:first-child th:last-child,
+table tbody tr:first-child td:last-child  {
+    -webkit-border-radius: 0 5px 0 0;
+    -moz-border-radius: 0 5px 0 0;
+    border-radius: 0 5px 0 0;
+}
+table tbody tr:last-child td:first-child   {
+    -webkit-border-radius: 0 0 0 5px;
+    -moz-border-radius: 0 0 0 5px;
+    border-radius: 0 0 0 5px;
+}
+table tbody tr:last-child td:last-child{
+    -webkit-border-radius: 0 0 5px 0;
+    -moz-border-radius: 0 0 5px 0;
+    border-radius: 0 0 5px 0;
+}
+table tr:hover {
+    background-color: #f2f2f2;
+}
+table tbody tr:nth-child(odd) td  {
+    background-color: lightgrey;
+}
+.button-give {
+    background-color: #57b846;
+}
+.button-give:hover {
+    background-color: #1b3815;
+    cursor:pointer;
+}
+.button-return {
+    background-color: rgb(255, 0, 0);
+}
+.button-return:hover {
+    background-color: darkred;
+    cursor:pointer;
+}
+.button-check {
+    background-color: #0000FF;
+}
+.button-check:hover {
+    background-color: darkblue;
+    cursor:pointer;
+}
+.buttons {
+    margin-left: 7%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.buttons ul {
+    display: inline;
+}
+.buttons ul li{
+    display: inline;
+}
+.buttons ul li button{
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 20%;
+    height: 50px;
+    border-radius: 25px;
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    outline: none !important;
+    border: none;
+}
+.buttons-two{
+    margin-left: -5%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+.buttons-two ul {
+    display: inline;
+}
+.buttons-two ul li{
+    display: inline;
+}
+.buttons-two ul li button{
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 25%;
+    height: 50px;
+    border-radius: 25px;
+    font-family: Ubuntu-Bold;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+    outline: none !important;
+    border: none;
+}
+#header {
+	font-size: 17px;
+	padding: 9px; 
+	font-weight: bold;
+	text-align: center;
+    width: 97.8%;
+	background-color: #57b846;
+	border-top: 2px solid black;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-top: 30px;
+}
+#button-green {
+    background-color: #57b846;
+}
+#button-green:hover {
+    background-color: #1b3815;
+    cursor: pointer;
+}
+#button-blue {
+     background-color: rgb(4, 0, 255);
+     margin-left: 12%;
+}
+#button-blue:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+#button-red {
+	background-color: rgb(255, 0, 0);
+	margin-left: 12%;
+}
+#button-red:hover {
+    background-color: darkred;
+    cursor:pointer;
+}
+#button-email {
+    background-color: #57b846;
+}
+#button-email:hover {
+    background-color: #1b3815;
+    cursor: pointer;
+}
+#button-list {
+    background-color: rgb(4, 0, 255);
+    margin-left: 12%;
+}
+#button-list:hover {
+    background-color: darkblue;
+    cursor: pointer;
+}
+#button-email {
+    margin-left: 25%;
+}
+#box {
+    margin-left: 10%;
+    width: 80%;
+}
+@media (max-width: 1100px) {
+    #box {
+        margin-left: 5%;
+        width: 90%;
+    }
+    #header {
+        width: 97.2%;
+    }
+    .buttons {
+        margin-left: 0;
+    }
+    #button-blue {
+        margin-left: 6%;
+    }
+    #button-red {
+        margin-left: 6%;
+    }
+    .buttons ul li button {
+        width: 25%;
+    }
+}
+@media (max-width: 800px) {
+    #box {
+        margin-left: 0;
+        width: 850px;
+    }
+    .buttons {
+        margin-left: 0;
+        width: 850px;
+    }
+    .buttons-two {
+        margin-left: -50px;
+        width: 850px;
+    }
+    #button-blue {
+        margin-left: 48px;
+    }
+    #button-red {
+        margin-left: 48px;
+    }
+    .buttons ul li button {
+        width: 200px;
+    }
+    #templatemo_header_wrapper {
+        width: 820px;
+    }
+}
+
+

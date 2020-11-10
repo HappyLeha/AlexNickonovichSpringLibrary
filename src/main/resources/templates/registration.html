@@ -4,124 +4,59 @@
 	<title>Registration</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css"   th:href="@{/css/util.css}">
 	<link rel="stylesheet" type="text/css"   th:href="@{/css/main.css}">
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<script>
-        var base64=null;
-		$('#photo-clear').click(function () {
-			base64=null;
-			$('#image').src="../static/images/avatar.png";
-		})
-		$( document ).ready(function(){
-
-			$('#image').click(function () {
-				$( "#input" ).click();
-			})
-			$( "#input" ).change(function (event) {
-				var input = $(this)[0];
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$('#image').attr('src', e.target.result);
-					base64=e.target.result;
-
-				}
-				reader.readAsDataURL(input.files[0]);
-
-			})
-			$( "#form" ).submit(function(){
-				//event.preventDefault();
-
-				var formData={
-					login: $( "#login" ).val(),
-					password: $( "#password" ).val(),
-					repeatPassword: $( "#password-repeat" ).val(),
-					firstName: $( "#firstname" ).val(),
-					lastName: $( "#lastname" ).val(),
-					year: $( "#year" ).val(),
-					email: $( "#email" ).val(),
-					phone: $( "#phone" ).val(),
-					photo: base64==null?null:base64.toString(),
-					role: 2
-				}
-
-				$.ajax({
-					type: "POST", // метод HTTP, используемый для запроса
-					contentType : "application/json",
-					url: "user", // строка, содержащая URL адрес, на который отправляется запрос
-					data: JSON.stringify(formData),
-					dataType:'text',
-					success: [function(data){
-						//alert("1");
-						window.location = 'http://localhost:8080/booklist';
-					}],
-
-					statusCode: {
-						406: function (response) {
-
-							$( "#error" ).html("Введённые пароли не совпадают!");
-						},
-						409: function (response) {
-
-							$( "#error" ).html("Пользователь с таким логином уже существует!");
-						}
-					}
-
-
-				})
-				return false;
-			});
-		});
-	</script>
-
-	<!--===============================================================================================-->
+	<script th:src="@{/js/registration.js}"></script>
 </head>
 <body>
-
-	<div class="limiter">
+<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-
 				<form id="form" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
 					<span class="login100-form-title">
 						Регистрация
 					</span>
                     <img id="image" class="image" th:src="@{/images/avatar.png}" />
-					<input id="input" class="input" type="file" name="img" accept="image/jpeg,image/png,image/gif">
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" id="login" name="login" placeholder="Логин*" required>
+					<input id="input" class="input" type="file" accept="image/jpeg,image/png,image/gif">
+					<h3 class="m-b-8">Логин</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="text" id="login" placeholder="Логин*" pattern="[a-zA-Zа-яА-Я0-9_]+" required>
 						<span class="focus-input100"></span>
 					</div>
-
-					<div class="wrap-input100 validate-input m-b-16 " data-validate = "Please enter password">
-						<input class="input100" type="password" id="password" name="password" placeholder="Пароль*" required>
+					<h3 class="m-b-8">Пароль</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="password" id="password" placeholder="Пароль*" pattern="[a-zA-Zа-яА-Я0-9_]+" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16 " data-validate = "Please enter password">
-						<input class="input100" type="password" id="password-repeat" name="password-repeat" placeholder="Повторите пароль*" required>
+					<h3 class="m-b-8">Повторите пароль</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="password" id="password-repeat" placeholder="Повторите пароль*" pattern="[a-zA-Zа-яА-Я0-9_]+" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" id="firstname" name="firstname" placeholder="Имя*" required>
+					<h3 class="m-b-8">Имя</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="text" id="firstname" name="firstname" placeholder="Имя*" pattern="[a-zA-Zа-яА-Я]+" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" id="lastname" name="lastname" placeholder="Фамилия*" required>
+					<h3 class="m-b-8">Фамилия</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="text" id="lastname" placeholder="Фамилия*" pattern="[a-zA-Zа-яА-Я]+" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="number" id="year" name="year" placeholder="Год рождения" min="1890" max="2020">
+					<h3 class="m-b-8">Год рождения</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="number" id="year" placeholder="Год рождения" min="1890" max="2020">
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="email" id="email" name="email" placeholder="Email*" required>
+					<h3 class="m-b-8">Email</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="email" id="email" placeholder="Email*" required>
 						<span class="focus-input100"></span>
 					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate="Please enter username">
-						<input class="input100" type="text" id="phone" name="phone" placeholder="Телефон [+375171112233]" pattern="\+\d{12}">
+					<h3 class="m-b-8">Телефон</h3>
+					<div class="wrap-input100 validate-input m-b-16">
+						<input class="input100" type="text" id="phone" placeholder="Телефон [+375171112233]" pattern="\+\d{12}">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="error-message m-b-32" id="error">
@@ -132,27 +67,22 @@
 						</button>
 					</div>
 				</form>
-				<form class="p-l-55 p-r-55">
+				<form class="p-l-55 p-r-55 login100-form">
 				<div class="container-login100-form-btn m-b-16">
-				<button id="photo-clear" class="login100-form-btn">
+				<button id="button-yellow" class="login100-form-btn">
 					Очистить
 				</button>
 				</div>
 				</form>
-				<form class="p-l-55 p-r-55" th:action="@{/index}">
+				<form class="p-l-55 p-r-55 login100-form" th:action="@{/index}">
 					<div class="container-login100-form-btn m-b-32">
-					<button id="button-back" class="login100-form-btn">
+					<button id="button-blue" class="login100-form-btn">
 						Назад
 					</button>
 				</div>
 				</form>
-
 			</div>
 		</div>
 	</div>
-
-<!--===============================================================================================-->
-
-
 </body>
 </html>

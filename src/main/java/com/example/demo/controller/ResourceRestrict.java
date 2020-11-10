@@ -9,11 +9,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ResourceRestrict {
+
     @ResponseBody
     @ExceptionHandler(ResourceRestrictException.class)
-
     @ResponseStatus(HttpStatus.CONFLICT)
-    String recourceNotFoundHandler (ResourceRestrictException ex) {
+    String resourceNotFoundHandler (ResourceRestrictException ex) {
         return ex.getMessage();
     }
+
 }

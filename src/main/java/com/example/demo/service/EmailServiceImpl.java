@@ -1,21 +1,28 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.EmailDto;
+import com.example.demo.dto.EmailCreateDto;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 import java.util.Properties;
+
 @Slf4j
 @Service
 @Transactional
 public class EmailServiceImpl implements EmailService {
-    public void sendEmail(EmailDto email) {
+
+    @Value("${address}")
+    String from;
+
+    @Value("${emailPassword}")
+    String password;
+
+    public void sendEmail(EmailCreateDto email) throws MessagingException {
         for (String address:email.getEmails()) {
-            String from = "alexnickonovichspringlibrary@gmail.com";
             String to = address;
             Properties props;
             props = new Properties();
@@ -25,20 +32,17 @@ public class EmailServiceImpl implements EmailService {
             props.put("mail.smtp.port", "587");
             Session session = Session.getInstance(props, new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(from, "alexnickonovichspringlibrary1#");
+                    return new PasswordAuthentication(from, password);
                 }
             });
-            try {
-                MimeMessage message = new MimeMessage(session);
-                message.setFrom(new InternetAddress(from));
-                message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-                message.setSubject(email.getSubject());
-                message.setText(email.getText());
-                Transport.send(message);
-                log.info("Email "+email.toString()+" was sent.");
-            } catch (MessagingException mex) {
-                System.out.println(mex.toString());
-            }
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            message.setSubject(email.getSubject());
+            message.setText(email.getText());
+            Transport.send(message);
+            log.info("Email "+email.toString()+" was sent.");
         }
     }
+
 }

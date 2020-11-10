@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EmailPage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/main.css}">
+    <link rel="stylesheet" type="text/css"   th:href="@{/css/menu.css}">
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/emailPage.js}"></script>
+</head>
+<body id="home">
+<div id="templatemo_header_wrapper">
+    <a th:href="@{/booklist}"><div id="site_title"></div></a>
+    <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a th:href="@{/profile}">Профиль</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+    </div>
+    <div class="cleaner"></div>
+</div>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <form id="form" class="login100-form validate-form p-l-55 p-r-55 p-t-178" th:action="@{/booklist}">
+					<span class="login100-form-title">
+						Email
+					</span>
+                <h3 class="m-b-8">Адрессаты</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <textarea class="input100" id="readers" name="title" disabled required></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Тема</h3>
+                <div class="wrap-input100 validate-input m-b-16 ">
+                    <input class="input100" type="text" id="subject" name="date">
+                    <span class="focus-input100"></span>
+                </div>
+                <h3 class="m-b-8">Текст</h3>
+                <div class="wrap-input100 validate-input m-b-16">
+                    <textarea class="input100" type="text" id="text" name="count" required></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="error-message m-b-32" id="error">
+                </div>
+                <div class="container-login100-form-btn m-b-16">
+                    <button class="login100-form-btn" >
+                        Отправить
+                    </button>
+                </div>
+            </form>
+            <form class="p-l-55 p-r-55" th:action="@{/readerlist}">
+                <div class="container-login100-form-btn m-b-32">
+                    <button id="button-blue" class="login100-form-btn">
+                        Назад
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

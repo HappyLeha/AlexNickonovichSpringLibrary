@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>BookList</title>
+    <link th:href="@{css/list.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{css/menu.css}" rel="stylesheet" type="text/css" />
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bookList_Admin.js}" th:if="${#request.isUserInRole('ROLE_ADMIN')}"></script>
+    <script type="text/javascript" th:src="@{/js/bookList_Reader.js}" th:if="${#request.isUserInRole('ROLE_READER')}"></script>
+</head>
+<body id="home">
+<div id="templatemo_header_wrapper">
+	<a th:href="@{/booklist}"><div id="site_title"></div></a>
+     <div id="templatemo_menu" class="ddsmoothmenu">
+        <ul>
+            <li><a th:href="@{/profile}">Профиль</a></li>
+            <li><a th:href="@{/logout}">Выйти</a></li>
+        </ul>
+     </div>
+    <div class="cleaner"></div>
+</div>
+<div id="box">
+<div id="header">Список книг</div>	
+<table>
+    <thead>
+        <tr>
+            <th th:if="${#request.isUserInRole('ROLE_ADMIN')}"></th>
+            <th>Наименование</th>
+            <th>Дата издания</th>
+            <th>Издательство</th>
+            <th  th:if="${#request.isUserInRole('ROLE_ADMIN')}">Имя</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+    </tbody>
+</table>
+</div>
+<div class="buttons" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+<ul>
+    <li><button id="button-green">Добавить</button></li>
+    <li><button id="button-blue">Список читателей</button></li>
+    <li><button id="button-red">Удалить</button></li>
+</ul>
+</div>
+</body>
+</html>

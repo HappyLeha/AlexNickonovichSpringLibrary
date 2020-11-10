@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.cleaner { clear: both }
+.ddsmoothmenu{
+    margin-top: 20px
+}
+.ddsmoothmenu ul{
+    margin: 0;
+    padding: 0;
+}
+.ddsmoothmenu ul li{
+    display: inline;
+    float: left;
+}
+.ddsmoothmenu ul li a {
+    display: block;
+    margin-right: 25px;
+    font-size: 17px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    outline: none;
+}
+* html .ddsmoothmenu ul li a{
+    display: inline-block;
+}
+.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li a:hover {
+    color: rgb(4, 0, 255);
+
+}
+#home {
+    background-image: url(../images/background.jpg);
+}
+#templatemo_header_wrapper {
+    padding: 15px 15px 20px;
+    background: url(../images/templatemo_header_dividier.png) repeat-x bottom;
+    background-color: #57b846;
+    opacity: 0.75;
+}
+#site_title {
+    float: left;
+    display: block;
+    background: url(../images/home.png) no-repeat center left;
+    width: 60px;
+    height: 60px;
+}
+#templatemo_menu {
+    float: right ;
+
+}
+
+

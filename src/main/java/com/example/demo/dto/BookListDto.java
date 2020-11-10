@@ -1,18 +1,25 @@
 package com.example.demo.dto;
 
-import com.example.demo.enums.Country;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookListDto {
-    private Integer id;
+public class BookListDto implements Comparable<BookListDto> {
+
+    private Long id;
     private String title;
     private LocalDate date;
-    private Integer count;
-    private Integer publishing;
+    private String publishing;
+    private Long userId;
+    private Long rentId;
+    private String name;
+
+    public int compareTo(BookListDto bookListDto) {
+        return this.getTitle().compareTo(bookListDto.getTitle());
+    }
+
 }

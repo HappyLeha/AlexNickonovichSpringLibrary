@@ -11,6 +11,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @SpringBootApplication
 @EnableScheduling
 public class SpringProject1Application {
+
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new
@@ -26,7 +27,9 @@ public class SpringProject1Application {
         bean.setValidationMessageSource(messageSource());
         return bean;
     }
+
     public static void main(String[] args) {
         SpringApplication.run(SpringProject1Application.class, args);
     }
+
 }
